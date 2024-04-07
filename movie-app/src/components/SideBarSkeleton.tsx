@@ -4,18 +4,16 @@ import {
   ListItem,
   Skeleton,
   SkeletonCircle,
-  SkeletonText,
 } from "@chakra-ui/react";
 
 const SideBarSkeleton = () => {
   return (
     <>
-      <List>
+      <List paddingY="10px">
         <Skeleton height="20px" />
         <ListItem>
           <HStack>
-            <SkeletonCircle size="10" />
-            <SkeletonText />
+            <SkeletonCircle size="10px" />
           </HStack>
         </ListItem>
       </List>

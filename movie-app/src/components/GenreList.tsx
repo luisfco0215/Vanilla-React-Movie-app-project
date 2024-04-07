@@ -1,18 +1,21 @@
-import { HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
+import { Button, HStack, Image, List, ListItem } from "@chakra-ui/react";
 import useGenre from "../hooks/useGenre";
 import SideBarSkeleton from "./SideBarSkeleton";
+import getCroppedImageUrl from "../services/CroppedImageUrl";
+import { Genres } from "../hooks/useGenre";
 
-const GenreList = () => {
+interface Props {
+  onClick: (genre: Genres) => void;
+}
+
+const GenreList = ({ onClick }: Props) => {
   const { data, isLoading, error } = useGenre();
 
   if (error) return null;
 
   return (
     <>
-      {isLoading &&
-        data.map((item) => {
-          <SideBarSkeleton key={item.id} />;
-        })}
+      {isLoading && data.map((item) => <SideBarSkeleton key={item.id} />)}
 
       <List paddingY="10px">
         {data.map((genre) => (
@@ -20,10 +23,16 @@ const GenreList = () => {
             <HStack>
               <Image
                 borderRadius={8}
-                src={genre.image_background}
+                src={getCroppedImageUrl(genre.image_background)}
                 boxSize="32px"
               />
-              <Text fontSize={"large"}>{genre.name}</Text>
+              <Button
+                onClick={() => onClick(genre)}
+                overflow="hidden"
+                variant="ghost"
+              >
+                {genre.name}
+              </Button>
             </HStack>
           </ListItem>
         ))}
