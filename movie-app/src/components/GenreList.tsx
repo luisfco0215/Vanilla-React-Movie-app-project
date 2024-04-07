@@ -6,9 +6,10 @@ import { Genres } from "../hooks/useGenre";
 
 interface Props {
   onClick: (genre: Genres) => void;
+  selectedGenre: Genres | null;
 }
 
-const GenreList = ({ onClick }: Props) => {
+const GenreList = ({ onClick, selectedGenre }: Props) => {
   const { data, isLoading, error } = useGenre();
 
   if (error) return null;
@@ -29,7 +30,7 @@ const GenreList = ({ onClick }: Props) => {
               <Button
                 onClick={() => onClick(genre)}
                 overflow="hidden"
-                variant="ghost"
+                variant={genre.id === selectedGenre?.id ? "outline" : "ghost"}
               >
                 {genre.name}
               </Button>
