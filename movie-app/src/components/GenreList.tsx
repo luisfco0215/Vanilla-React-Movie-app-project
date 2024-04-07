@@ -1,11 +1,19 @@
 import { HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
 import useGenre from "../hooks/useGenre";
+import SideBarSkeleton from "./SideBarSkeleton";
 
 const GenreList = () => {
-  const { data } = useGenre();
+  const { data, isLoading, error } = useGenre();
+
+  if (error) return null;
 
   return (
     <>
+      {isLoading &&
+        data.map((item) => {
+          <SideBarSkeleton key={item.id} />;
+        })}
+
       <List paddingY="10px">
         {data.map((genre) => (
           <ListItem key={genre.id} paddingY="5px">
