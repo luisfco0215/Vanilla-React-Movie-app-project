@@ -16,15 +16,13 @@ const Sorting = ({ selectedOrder, onSelectedOrder }: Props) => {
     { value: "-rating", label: "Average rating" },
   ];
 
-  const [{ label }] = sortOders.filter(
-    (order) => order.value === selectedOrder
-  );
+  const sorted = sortOders.find((order) => order.value === selectedOrder);
 
   return (
     <>
       <Menu>
         <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-          Order by: {label || "Relevance"}
+          Order by: {sorted?.label || "Relevance"}
         </MenuButton>
         <MenuList>
           {sortOders.map((order) => {
