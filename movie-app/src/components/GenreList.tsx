@@ -1,4 +1,11 @@
-import { Button, HStack, Image, List, ListItem } from "@chakra-ui/react";
+import {
+  Button,
+  HStack,
+  Heading,
+  Image,
+  List,
+  ListItem,
+} from "@chakra-ui/react";
 import useGenre from "../hooks/useGenre";
 import SideBarSkeleton from "./SideBarSkeleton";
 import getCroppedImageUrl from "../services/CroppedImageUrl";
@@ -16,6 +23,9 @@ const GenreList = ({ onClick, selectedGenre }: Props) => {
 
   return (
     <>
+      <Heading marginTop={3} fontSize="2xl">
+        Genres
+      </Heading>
       {isLoading && data.map((item) => <SideBarSkeleton key={item.id} />)}
 
       <List paddingY="10px">
@@ -26,10 +36,12 @@ const GenreList = ({ onClick, selectedGenre }: Props) => {
                 borderRadius={8}
                 src={getCroppedImageUrl(genre.image_background)}
                 boxSize="32px"
+                objectFit="cover"
               />
               <Button
                 onClick={() => onClick(genre)}
-                overflow="hidden"
+                whiteSpace="normal"
+                textAlign="left"
                 variant={genre.id === selectedGenre?.id ? "outline" : "ghost"}
               >
                 {genre.name}
