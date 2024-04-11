@@ -16,23 +16,19 @@ export interface Games {
   metacritic: number;
 }
 
-interface FetchReponse<T> {
+export interface FetchReponse<T> {
   count: number;
   results: T[];
 }
 
 const UseGames = (gameQuery: GameQuery) =>
-  useData<FetchReponse<Games>>(
-    "/games",
-    // {
-    //   params: {
-    //     genres: gameQuery.genre?.id,
-    //     platforms: gameQuery.platform?.id,
-    //     ordering: gameQuery.sortOrder,
-    //     search: gameQuery.searchText,
-    //   },
-    // },
-    // [gameQuery]
-  );
+  useData<FetchReponse<Games>>("/games", {
+    params: {
+      genres: gameQuery.genre?.id,
+      parent_platforms: gameQuery.platform?.id,
+      ordering: gameQuery.sortOrder,
+      search: gameQuery.searchText,
+    },
+  });
 
 export default UseGames;

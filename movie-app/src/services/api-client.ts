@@ -17,8 +17,8 @@ class APIClient<T> {
   getAll = async () => {
     const res = await axios.get<T>("https://api.rawg.io/api" + this.endpoint, {
       params: {
-        key: "4ca83e59e9744875b743fba5eb589d7f",
-      }  
+        key: "8b27da0d64c4480ba3ca0cbf9b658de6",
+      },
     });
     return res.data;
   };

@@ -1,3 +1,4 @@
+import { FetchReponse } from "./UseGames";
 import useData from "./useData";
 
 export interface Genres {
@@ -6,11 +7,6 @@ export interface Genres {
   image_background: string;
 }
 
-interface FetchReponse<T> {
-  count: number;
-  results: T[];
-}
-
-const useGenre = () => useData<FetchReponse<Genres>>('genres/');
+const useGenre = () => useData<FetchReponse<Genres>>("genres/", undefined, 24);
 
 export default useGenre;
