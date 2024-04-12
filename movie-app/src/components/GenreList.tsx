@@ -5,11 +5,11 @@ import {
   Image,
   List,
   ListItem,
+  Spinner,
 } from "@chakra-ui/react";
 import useGenre from "../hooks/useGenre";
 import getCroppedImageUrl from "../services/CroppedImageUrl";
 import { Genres } from "../hooks/useGenre";
-// import SideBarSkeleton from "./SideBarSkeleton";
 
 interface Props {
   onClick: (genre: Genres) => void;
@@ -17,17 +17,18 @@ interface Props {
 }
 
 const GenreList = ({ onClick, selectedGenre }: Props) => {
-  const { data } = useGenre();
+  const { data, isLoading } = useGenre();
+  console.log(data?.results.map((test) => getCroppedImageUrl(test.image_background)));
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>
       <Heading marginTop={3} fontSize="2xl">
         Genres
       </Heading>
-      {/* {isLoading && data?.map((item) => <SideBarSkeleton key={item.id} />)} */}
-
       <List paddingY="10px">
-        {data?.results?.map((genre) => (
+        {data?.results.map((genre) => (
           <ListItem key={genre.id} paddingY="5px">
             <HStack>
               <Image
