@@ -13,12 +13,12 @@ import { Genres } from "../hooks/useGenre";
 
 interface Props {
   onClick: (genre: Genres) => void;
-  selectedGenre: Genres | null;
+  selectedGenreId?: number;
 }
 
-const GenreList = ({ onClick, selectedGenre }: Props) => {
+const GenreList = ({ onClick, selectedGenreId }: Props) => {
   const { data, isLoading } = useGenre();
-  console.log(data?.results.map((test) => getCroppedImageUrl(test.image_background)));
+  const selectorId = data?.results?.find((genre) => genre.id === selectedGenreId);
 
   if (isLoading) return <Spinner />;
 
@@ -41,7 +41,7 @@ const GenreList = ({ onClick, selectedGenre }: Props) => {
                 onClick={() => onClick(genre)}
                 whiteSpace="normal"
                 textAlign="left"
-                variant={genre.id === selectedGenre?.id ? "outline" : "ghost"}
+                variant={genre.id === selectorId?.id ? "outline" : "ghost"}
               >
                 {genre.name}
               </Button>
