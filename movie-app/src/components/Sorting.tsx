@@ -13,8 +13,9 @@ const Sorting = () => {
     { value: "-rating", label: "Average rating" },
   ];
 
-  const { setSortOrder, gameQuery } = useGameStore();
-  const sorted = sortOders.find((order) => order.value === gameQuery.sortOrder);
+  const sortOrder = useGameStore(s => s.gameQuery.sortOrder);
+  const setSortOrder = useGameStore(s => s.setSortOrder);
+  const sorted = sortOders.find((order) => order.value === sortOrder);
 
   return (
     <>

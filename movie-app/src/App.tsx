@@ -5,11 +5,8 @@ import GenreList from "./components/GenreList";
 import PlatformSelector from "./components/PlatformSelector";
 import Sorting from "./components/Sorting";
 import GameHeading from "./components/GameHeading";
-import useGameStore from "./store/gameStore";
 
 function App() {
-  const { setPlatformId } = useGameStore();
-
   return (
     <>
       <Grid
@@ -35,11 +32,7 @@ function App() {
             <GameHeading />
           </Box>
           <HStack marginLeft={2} marginBottom={3}>
-            <PlatformSelector
-              onSelectPlatform={(platform) =>
-                setPlatformId(platform.id)
-              }
-            />
+            <PlatformSelector />
             <Sorting />
           </HStack>
           <GameGrid />
