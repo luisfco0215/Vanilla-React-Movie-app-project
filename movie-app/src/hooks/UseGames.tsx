@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { GameQuery } from "../App";
 import { Platforms } from "./usePlatforms";
 import APIClient, { FetchReponse } from "../services/api-client";
+import { GameQuery } from "../store/gameStore";
 
 const apiClient = new APIClient<Games>("/games");
 
@@ -13,7 +13,6 @@ export interface Games {
   parent_platforms: { platform: Platforms }[];
   metacritic: number;
 }
-
 
 const UseGames = (gameQuery: GameQuery) =>
   useInfiniteQuery<FetchReponse<Games>, Error>({
