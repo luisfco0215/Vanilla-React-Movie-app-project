@@ -15,7 +15,6 @@ const router = createBrowserRouter([
             { path: 'Games/:slug', Component: GameDetailsPage },
         ]
     }
-
 ]);
 
 export default router;

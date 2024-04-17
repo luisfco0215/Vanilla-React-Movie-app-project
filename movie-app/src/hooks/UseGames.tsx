@@ -3,7 +3,7 @@ import { Platforms } from "./usePlatforms";
 import APIClient, { FetchReponse } from "../services/api-client";
 import useGameStore from "../store/gameStore";
 
-const apiClient = new APIClient<Games>("/games");
+export const apiClient = new APIClient<Games>("/games");
 
 export interface Games {
   id: number;
